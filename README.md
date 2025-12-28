@@ -144,7 +144,9 @@ satucommit quick
 
 ### AI Agent Slash Command Support
 
-**Important:** The `satucommit init` command is just for displaying usage information - it doesn't create any configuration files. All functionality is built into the CLI.
+**Important:** After installation, `satucommit` is installed globally via `npm link`. AI agents can directly execute `satucommit` commands without any configuration files.
+
+The `satucommit init` command is just for displaying usage information - it doesn't create any configuration files. All functionality is built into the CLI.
 
 After installation, you can run `satucommit init` to see usage:
 
@@ -161,9 +163,31 @@ This will display the available slash commands that you can use in AI agents:
 - `/satucommit scopes` - Show common commit scopes
 
 **How to use in AI agents:**
-1. Configure your AI agent to execute `satucommit` commands when you use these slash commands
-2. The AI agent will run the appropriate satucommit command based on your input
-3. No additional configuration files are needed - everything is built into the CLI
+
+**Step 1: Install satucommit globally**
+The installation script (`install.sh` or `install.bat`) automatically runs `npm link`, which installs `satucommit` globally. After this, the `satucommit` command is available from anywhere in your system.
+
+**Step 2: Configure your AI agent**
+Configure your AI agent to recognize and execute `satucommit` commands when you use slash commands like `/satucommit quick`.
+
+**Step 3: Use slash commands**
+When you type a slash command in your AI agent (e.g., `/satucommit quick`), the AI agent will execute:
+```bash
+satucommit quick
+```
+
+**No configuration files needed!** All functionality is built into the CLI. Just install and use directly.
+
+**Example AI Agent Workflow:**
+```
+User: "/satucommit quick"
+AI Agent:
+  1. Executes: satucommit quick
+  2. satucommit analyzes staged changes
+  3. Generates semantic commit message with gitmoji
+  4. Creates git commit automatically
+  5. Returns result to user
+```
 
 ### Available Commands
 
