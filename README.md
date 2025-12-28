@@ -34,7 +34,7 @@
 
 ### Installation on Linux / macOS
 
-#### Option 1: Using the Installation Script (Recommended)
+#### Option 1: Using the Installation Script (Recommended) ⭐
 
 1. Clone the repository:
 ```bash
@@ -48,15 +48,13 @@ chmod +x install.sh
 ./install.sh
 ```
 
-3. Initialize for AI agent slash command support:
-```bash
-node cli.js init
-```
+The installation script will automatically:
+- ✅ Install dependencies
+- ✅ Make CLI executable
+- ✅ Install globally (`npm link`)
+- ✅ Initialize for AI agent slash command support
 
-4. (Optional) Create a global symlink for easier access:
-```bash
-npm link
-```
+After installation, you can use `satucommit` command from anywhere!
 
 #### Option 2: Manual Installation
 
@@ -76,14 +74,19 @@ npm install
 chmod +x cli.js
 ```
 
-4. (Optional) Create a global symlink:
+4. Install globally:
 ```bash
 npm link
 ```
 
+5. Initialize for AI agent slash command support:
+```bash
+satucommit init
+```
+
 ### Installation on Windows
 
-#### Option 1: Using the Installation Script (Recommended)
+#### Option 1: Using the Installation Script (Recommended) ⭐
 
 1. Clone the repository:
 ```cmd
@@ -96,15 +99,12 @@ cd satucommit
 install.bat
 ```
 
-3. Initialize for AI agent slash command support:
-```cmd
-node cli.js init
-```
+The installation script will automatically:
+- ✅ Install dependencies
+- ✅ Install globally (`npm link`)
+- ✅ Initialize for AI agent slash command support
 
-4. (Optional) Create a global symlink for easier access:
-```cmd
-npm link
-```
+After installation, you can use `satucommit` command from anywhere!
 
 #### Option 2: Manual Installation
 

@@ -33,12 +33,26 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
+REM Install globally
+echo [INFO] Installing globally...
+call npm link
+if %errorlevel% neq 0 (
+    echo [WARNING] Failed to install globally
+    echo You can still use satucommit with: node cli.js [command]
+)
+
 echo.
 echo ========================================
 echo   Installation Complete!
 echo ========================================
 echo.
-echo Usage:
+echo [INFO] Initializing satucommit for AI agent slash command support...
+call node cli.js init
+echo.
+echo ========================================
+echo   Usage
+echo ========================================
+echo.
 echo   satucommit generate     - Generate a semantic commit message
 echo   satucommit quick        - Quick commit with auto-generated message
 echo   satucommit interactive  - Interactive mode to build commit message

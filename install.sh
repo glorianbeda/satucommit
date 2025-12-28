@@ -23,10 +23,21 @@ echo ""
 echo "📦 Installing dependencies..."
 npm install
 
+# Make CLI executable
+echo "🔧 Making CLI executable..."
+chmod +x cli.js
+
+# Install globally
+echo "📦 Installing globally..."
+npm link
+
 echo ""
 echo "✅ Installation complete!"
 echo ""
-echo "📋 Usage:"
+echo "🚀 Initializing satucommit for AI agent slash command support..."
+node cli.js init
+echo ""
+echo "� Usage:"
 echo "  satucommit generate     - Generate a semantic commit message"
 echo "  satucommit quick        - Quick commit with auto-generated message"
 echo "  satucommit interactive  - Interactive mode to build commit message"
