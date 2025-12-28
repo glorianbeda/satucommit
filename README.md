@@ -52,9 +52,16 @@ The installation script will automatically:
 - ✅ Install dependencies
 - ✅ Make CLI executable
 - ✅ Install globally (`npm link`)
+- ✅ Copy config file (`.satucommit.config.json`) to home directory
 - ✅ Initialize for AI agent slash command support
 
 After installation, you can use `satucommit` command from anywhere!
+
+**Config File:**
+- Linux/macOS: `~/.satucommit.config.json`
+- Windows: `%USERPROFILE%\.satucommit.config.json`
+
+This config file contains slash command mappings that AI agents can read to understand available commands.
 
 #### Option 2: Manual Installation
 

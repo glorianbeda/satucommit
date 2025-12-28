@@ -33,12 +33,25 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
+REM Make CLI executable
+echo [INFO] Making CLI executable...
+REM CLI is already executable on Windows, no need to chmod
+
 REM Install globally
 echo [INFO] Installing globally...
 call npm link
 if %errorlevel% neq 0 (
     echo [WARNING] Failed to install globally
     echo You can still use satucommit with: node cli.js [command]
+)
+
+REM Copy config file to user home directory
+echo [INFO] Copying config file...
+if not exist "%USERPROFILE%\.satucommit.config.json" (
+    copy .satucommit.config.json "%USERPROFILE%\.satucommit.config.json"
+    echo [OK] Config file copied to: %USERPROFILE%\.satucommit.config.json
+) else (
+    echo [WARNING] Config file already exists in user directory
 )
 
 echo.
@@ -58,6 +71,8 @@ echo   satucommit quick        - Quick commit with auto-generated message
 echo   satucommit interactive  - Interactive mode to build commit message
 echo   satucommit types        - Show available commit types
 echo   satucommit scopes       - Show common commit scopes
+echo.
+echo [INFO] Config file location: %USERPROFILE%\.satucommit.config.json
 echo.
 echo For more information, run: satucommit --help
 echo.

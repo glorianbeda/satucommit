@@ -31,13 +31,19 @@ chmod +x cli.js
 echo "📦 Installing globally..."
 npm link
 
+# Copy config file to home directory
+echo "📝 Copying config file..."
+cp .satucommit.config.json "$HOME/.satucommit.config.json" 2>/dev/null || echo "Config file already exists in home directory"
+
 echo ""
 echo "✅ Installation complete!"
 echo ""
 echo "🚀 Initializing satucommit for AI agent slash command support..."
 node cli.js init
 echo ""
-echo "� Usage:"
+echo "📝 Config file created at: $HOME/.satucommit.config.json"
+echo ""
+echo "📋 Usage:"
 echo "  satucommit generate     - Generate a semantic commit message"
 echo "  satucommit quick        - Quick commit with auto-generated message"
 echo "  satucommit interactive  - Interactive mode to build commit message"

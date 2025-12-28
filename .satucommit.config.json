@@ -1,0 +1,64 @@
+{
+  "name": "satucommit",
+  "version": "1.0.0",
+  "description": "AI Agent helper for generating semantic git commits with gitmoji",
+  "slashCommands": {
+    "/satucommit quick": {
+      "description": "Quick commit with auto-generated message",
+      "command": "satucommit quick",
+      "example": "User types: /satucommit quick"
+    },
+    "/satucommit generate": {
+      "description": "Generate commit with custom options",
+      "command": "satucommit generate",
+      "example": "User types: /satucommit generate -t feat -s auth -d add login"
+    },
+    "/satucommit interactive": {
+      "description": "Interactive mode to build commit message",
+      "command": "satucommit interactive",
+      "example": "User types: /satucommit interactive"
+    },
+    "/satucommit types": {
+      "description": "Show available commit types",
+      "command": "satucommit types",
+      "example": "User types: /satucommit types"
+    },
+    "/satucommit scopes": {
+      "description": "Show common commit scopes",
+      "command": "satucommit scopes",
+      "example": "User types: /satucommit scopes"
+    }
+  },
+  "usage": {
+    "aiAgent": {
+      "howItWorks": "When AI agent detects a slash command from this config, it should execute the corresponding terminal command",
+      "steps": [
+        "1. AI agent reads this config file",
+        "2. User types a slash command (e.g., /satucommit quick)",
+        "3. AI agent detects the command from slashCommands mapping",
+        "4. AI agent executes the terminal command (e.g., satucommit quick)",
+        "5. satucommit analyzes staged changes and generates semantic commit message",
+        "6. satucommit creates git commit automatically"
+      ]
+    },
+    "examples": [
+      {
+        "scenario": "Quick commit",
+        "userInput": "/satucommit quick",
+        "aiAction": "Execute terminal command: satucommit quick",
+        "expectedOutput": "✨ feat(auth): add user login functionality"
+      },
+      {
+        "scenario": "Custom commit",
+        "userInput": "/satucommit generate -t feat -s api -d add CRUD operations",
+        "aiAction": "Execute terminal command: satucommit generate -t feat -s api -d add CRUD operations",
+        "expectedOutput": "✨ feat(api): add CRUD operations"
+      }
+    ]
+  },
+  "installation": {
+    "globalInstall": "After running install.sh or install.bat, satucommit is installed globally via npm link",
+    "availableCommands": "You can use 'satucommit' command from anywhere in your terminal",
+    "verification": "Run 'satucommit --help' to verify installation"
+  }
+}
