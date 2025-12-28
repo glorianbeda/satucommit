@@ -32,7 +32,9 @@
 
 ## 🔧 Installation
 
-### Option 1: Clone and Install Locally
+### Installation on Linux / macOS
+
+#### Option 1: Using the Installation Script (Recommended)
 
 1. Clone the repository:
 ```bash
@@ -46,17 +48,12 @@ chmod +x install.sh
 ./install.sh
 ```
 
-3. Make the CLI executable:
-```bash
-chmod +x cli.js
-```
-
-4. (Optional) Create a global symlink for easier access:
+3. (Optional) Create a global symlink for easier access:
 ```bash
 npm link
 ```
 
-### Option 2: Manual Installation
+#### Option 2: Manual Installation
 
 1. Clone the repository:
 ```bash
@@ -78,6 +75,46 @@ chmod +x cli.js
 ```bash
 npm link
 ```
+
+### Installation on Windows
+
+#### Option 1: Using the Installation Script (Recommended)
+
+1. Clone the repository:
+```cmd
+git clone https://github.com/glorianbeda/satucommit.git
+cd satucommit
+```
+
+2. Run the installation script:
+```cmd
+install.bat
+```
+
+3. (Optional) Create a global symlink for easier access:
+```cmd
+npm link
+```
+
+#### Option 2: Manual Installation
+
+1. Clone the repository:
+```cmd
+git clone https://github.com/glorianbeda/satucommit.git
+cd satucommit
+```
+
+2. Install dependencies:
+```cmd
+npm install
+```
+
+3. (Optional) Create a global symlink:
+```cmd
+npm link
+```
+
+**Note:** On Windows, you can run the CLI using `node cli.js` or `satucommit` if you've run `npm link`.
 
 ## 📖 Usage
 
@@ -255,7 +292,9 @@ satucommit/
 ├── index.js          # Core logic for commit message generation
 ├── cli.js            # CLI interface and commands
 ├── package.json      # Project configuration
-├── install.sh        # Installation script
+├── install.sh        # Installation script for Linux/macOS
+├── install.bat       # Installation script for Windows
+├── .gitignore        # Git ignore rules
 └── README.md         # This file
 ```
 
