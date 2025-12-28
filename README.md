@@ -48,7 +48,12 @@ chmod +x install.sh
 ./install.sh
 ```
 
-3. (Optional) Create a global symlink for easier access:
+3. Initialize for AI agent slash command support:
+```bash
+node cli.js init
+```
+
+4. (Optional) Create a global symlink for easier access:
 ```bash
 npm link
 ```
@@ -91,7 +96,12 @@ cd satucommit
 install.bat
 ```
 
-3. (Optional) Create a global symlink for easier access:
+3. Initialize for AI agent slash command support:
+```cmd
+node cli.js init
+```
+
+4. (Optional) Create a global symlink for easier access:
 ```cmd
 npm link
 ```
@@ -131,6 +141,24 @@ git add <specific-files>
 ```bash
 satucommit quick
 ```
+
+### AI Agent Slash Command Support
+
+After installation, initialize satucommit for AI agent slash command support:
+
+```bash
+node cli.js init
+```
+
+This will enable you to use satucommit with slash commands in AI agents like:
+
+- `/satucommit quick` - Quick commit with auto-generated message
+- `/satucommit generate` - Generate commit with custom options
+- `/satucommit interactive` - Interactive mode
+- `/satucommit types` - Show available commit types
+- `/satucommit scopes` - Show common commit scopes
+
+**Note:** Configure your AI agent to execute `satucommit` commands when you use these slash commands.
 
 ### Available Commands
 

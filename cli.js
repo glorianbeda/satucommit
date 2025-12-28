@@ -28,6 +28,86 @@ program
   )
   .version("1.0.0");
 
+// Init command for AI agent slash command support
+program
+  .command("init")
+  .description("Initialize satucommit for AI agent slash command support")
+  .option("-g, --global", "Install globally for system-wide access")
+  .action((options) => {
+    try {
+      console.log(
+        chalk.blue(
+          "🚀 Initializing satucommit for AI agent slash command support...\n"
+        )
+      );
+
+      // Check if we're in a git repository
+      if (!isGitRepository()) {
+        console.error(chalk.red("Error: Not a git repository"));
+        console.log(chalk.cyan("Please initialize git first: git init"));
+        process.exit(1);
+      }
+
+      console.log(
+        chalk.green("✅ satucommit is ready for AI agent slash commands!\n")
+      );
+      console.log(chalk.cyan("📋 Usage in AI Agents:\n"));
+      console.log(
+        chalk.white(
+          "  /satucommit quick       - Quick commit with auto-generated message"
+        )
+      );
+      console.log(
+        chalk.white(
+          "  /satucommit generate    - Generate commit with custom options"
+        )
+      );
+      console.log(
+        chalk.white(
+          "  /satucommit interactive - Interactive mode to build commit message"
+        )
+      );
+      console.log(
+        chalk.white("  /satucommit types       - Show available commit types")
+      );
+      console.log(
+        chalk.white("  /satucommit scopes      - Show common commit scopes\n")
+      );
+
+      console.log(chalk.gray("─".repeat(50)));
+      console.log(chalk.yellow("💡 Tip: Configure your AI agent to use:"));
+      console.log(chalk.cyan("  satucommit quick"));
+      console.log(chalk.gray("─".repeat(50)));
+
+      if (options.global) {
+        console.log(chalk.blue("\n📦 Installing globally...\n"));
+        try {
+          const { execSync } = require("child_process");
+          execSync("npm link", { encoding: "utf8" });
+          console.log(chalk.green("✅ satucommit installed globally!"));
+          console.log(
+            chalk.cyan('You can now use "satucommit" command from anywhere.\n')
+          );
+        } catch (error) {
+          console.error(
+            chalk.red("❌ Failed to install globally:"),
+            error.message
+          );
+          console.log(
+            chalk.yellow(
+              "Try running: sudo npm link (Linux/macOS) or npm link (Windows)\n"
+            )
+          );
+        }
+      }
+
+      console.log(chalk.green("✅ Initialization complete!\n"));
+    } catch (error) {
+      console.error(chalk.red("Error:"), error.message);
+      process.exit(1);
+    }
+  });
+
 // Generate commit message command
 program
   .command("generate")
