@@ -2,22 +2,22 @@
 
 const { Command } = require("commander");
 const chalk = require("chalk");
-const { execSync } = require("child_process");
-const fs = require("fs");
-const path = require("path");
 
+// Import from modular structure
 const {
   GITMOJIS,
   COMMIT_TYPES,
   COMMON_SCOPES,
   getGitDiff,
   getGitStatus,
+  isGitRepository,
+  createCommit,
   analyzeChanges,
   generateCommitMessage,
   formatCommitMessage,
   groupChanges,
   generateGroupedCommits,
-} = require("./index");
+} = require("./src/index");
 
 const program = new Command();
 
@@ -43,12 +43,7 @@ program
   .action((options) => {
     try {
       // Check if we're in a git repository
-      try {
-        execSync("git rev-parse --git-dir", {
-          encoding: "utf8",
-          stdio: "pipe",
-        });
-      } catch (error) {
+      if (!isGitRepository()) {
         console.error(chalk.red("Error: Not a git repository"));
         process.exit(1);
       }
@@ -147,14 +142,9 @@ program
 
         if (!options.dryRun) {
           // Execute the commit
-          try {
-            execSync(`git commit -m "${commitMessage}"`, {
-              encoding: "utf8",
-              stdio: "pipe",
-            });
+          if (createCommit(commitMessage)) {
             console.log(chalk.green("\n✅ Commit successful!"));
-          } catch (error) {
-            console.error(chalk.red("\n❌ Commit failed:"), error.message);
+          } else {
             process.exit(1);
           }
         } else {
@@ -219,12 +209,7 @@ program
     (async () => {
       try {
         // Check if we're in a git repository
-        try {
-          execSync("git rev-parse --git-dir", {
-            encoding: "utf8",
-            stdio: "pipe",
-          });
-        } catch (error) {
+        if (!isGitRepository()) {
           console.error(chalk.red("Error: Not a git repository"));
           rl.close();
           process.exit(1);
@@ -319,14 +304,10 @@ program
         );
 
         if (confirm.toLowerCase() !== "n") {
-          try {
-            execSync(`git commit -m "${commitMessage}"`, {
-              encoding: "utf8",
-              stdio: "pipe",
-            });
+          if (createCommit(commitMessage)) {
             console.log(chalk.green("\n✅ Commit successful!"));
-          } catch (error) {
-            console.error(chalk.red("\n❌ Commit failed:"), error.message);
+          } else {
+            console.error(chalk.red("\n❌ Commit failed"));
           }
         } else {
           console.log(chalk.yellow("\n⚠️  Commit cancelled"));
@@ -355,12 +336,7 @@ program
   .action((options) => {
     try {
       // Check if we're in a git repository
-      try {
-        execSync("git rev-parse --git-dir", {
-          encoding: "utf8",
-          stdio: "pipe",
-        });
-      } catch (error) {
+      if (!isGitRepository()) {
         console.error(chalk.red("Error: Not a git repository"));
         process.exit(1);
       }
@@ -386,14 +362,9 @@ program
       console.log(chalk.gray("\n─".repeat(50)));
 
       if (!options.dryRun) {
-        try {
-          execSync(`git commit -m "${commitMessage}"`, {
-            encoding: "utf8",
-            stdio: "pipe",
-          });
+        if (createCommit(commitMessage)) {
           console.log(chalk.green("\n✅ Commit successful!"));
-        } catch (error) {
-          console.error(chalk.red("\n❌ Commit failed:"), error.message);
+        } else {
           process.exit(1);
         }
       } else {

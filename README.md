@@ -289,13 +289,22 @@ This will:
 
 ```
 satucommit/
-├── index.js          # Core logic for commit message generation
-├── cli.js            # CLI interface and commands
-├── package.json      # Project configuration
-├── install.sh        # Installation script for Linux/macOS
-├── install.bat       # Installation script for Windows
-├── .gitignore        # Git ignore rules
-└── README.md         # This file
+├── src/
+│   ├── index.js              # Main entry point for the library
+│   └── lib/
+│       ├── gitmojis.js       # Gitmoji mappings
+│       ├── commit-types.js   # Commit type definitions
+│       ├── scopes.js         # Common commit scopes
+│       ├── git.js            # Git utilities
+│       ├── analyzer.js       # Change analyzer
+│       ├── generator.js      # Commit message generator
+│       └── grouper.js        # Change grouper
+├── cli.js                   # CLI interface and commands
+├── package.json             # Project configuration
+├── install.sh               # Installation script for Linux/macOS
+├── install.bat              # Installation script for Windows
+├── .gitignore               # Git ignore rules
+└── README.md                # This file
 ```
 
 ## 🎨 Examples
