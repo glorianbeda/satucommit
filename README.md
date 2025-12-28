@@ -252,7 +252,11 @@ Closes #123
 
 ## 🤖 AI Agent Integration
 
-satucommit is designed to work seamlessly with AI agents. When an AI agent needs to commit changes:
+satucommit is designed to work seamlessly with AI agents. There are two ways to integrate:
+
+### Method 1: Using CLI Commands (Simple)
+
+When an AI agent needs to commit changes:
 
 1. The agent stages changes using `git add`
 2. The agent runs `satucommit quick` or `satucommit generate`
@@ -269,6 +273,103 @@ git add app.js
 
 # Agent generates commit message
 satucommit quick
+```
+
+### Method 2: Using Programmatic API (Recommended)
+
+For AI agents that can execute Node.js code, satucommit provides a simple API:
+
+```javascript
+const { api } = require('./satucommit/src/api');
+
+// Check if in git repository
+if (!api.isGitRepo()) {
+  console.log('Not a git repository');
+  return;
+}
+
+// Get suggestions based on staged changes
+const suggestions = api.getSuggestions();
+console.log('Suggested type:', suggestions.type);
+console.log('Suggested scope:', suggestions.scope);
+
+// Generate and commit automatically
+const success = api.commitAuto({
+  description: 'add new feature',
+  type: 'feat',
+  scope: 'auth'
+});
+
+if (success) {
+  console.log('Commit successful!');
+}
+```
+
+#### API Methods
+
+| Method | Description |
+|--------|-------------|
+| `api.isGitRepo()` | Check if current directory is a git repository |
+| `api.getStagedChanges()` | Get analysis of staged changes |
+| `api.getSuggestions()` | Get suggestions for commit type and scope |
+| `api.generate(options)` | Generate commit message without committing |
+| `api.commit(message)` | Execute commit with given message |
+| `api.commitAuto(options)` | Generate and commit in one step |
+| `api.getAnalysis()` | Get detailed analysis of staged changes |
+
+#### API Options
+
+```javascript
+api.commitAuto({
+  description: 'custom description',  // Optional: custom commit description
+  type: 'feat',                    // Optional: custom commit type
+  scope: 'auth',                   // Optional: custom commit scope
+  breaking: false,                  // Optional: mark as breaking change
+  group: false                      // Optional: group changes into multiple commits
+});
+```
+
+#### Example: AI Agent Integration
+
+```javascript
+const { api } = require('./satucommit/src/api');
+
+// AI agent makes changes and stages them
+// (git add commands executed by agent)
+
+// AI agent gets suggestions
+const suggestions = api.getSuggestions();
+
+// AI agent generates commit message
+const message = api.generate({
+  description: 'implement user authentication',
+  type: suggestions.type,
+  scope: suggestions.scope
+});
+
+console.log('Generated commit message:', message);
+
+// AI agent executes the commit
+api.commit(message);
+```
+
+#### Example: Grouped Commits
+
+```javascript
+const { api } = require('./satucommit/src/api');
+
+// Generate grouped commits for complex changes
+const commits = api.generate({ group: true });
+
+if (Array.isArray(commits)) {
+  commits.forEach((commit, index) => {
+    console.log(`Commit ${index + 1}:`, commit.message);
+    console.log(`Files: ${commit.files.length}`);
+    
+    // Commit each group separately
+    api.commit(commit.message);
+  });
+}
 ```
 
 ## 🔄 Change Grouping

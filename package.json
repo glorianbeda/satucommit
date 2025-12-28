@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "AI Agent helper for generating semantic git commits with gitmoji and proper grouping",
   "main": "src/index.js",
+  "types": "src/index.js",
   "bin": {
     "satucommit": "./cli.js"
   },
