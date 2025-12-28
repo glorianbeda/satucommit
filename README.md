@@ -144,13 +144,15 @@ satucommit quick
 
 ### AI Agent Slash Command Support
 
-After installation, initialize satucommit for AI agent slash command support:
+**Important:** The `satucommit init` command is just for displaying usage information - it doesn't create any configuration files. All functionality is built into the CLI.
+
+After installation, you can run `satucommit init` to see usage:
 
 ```bash
-node cli.js init
+satucommit init
 ```
 
-This will enable you to use satucommit with slash commands in AI agents like:
+This will display the available slash commands that you can use in AI agents:
 
 - `/satucommit quick` - Quick commit with auto-generated message
 - `/satucommit generate` - Generate commit with custom options
@@ -158,7 +160,10 @@ This will enable you to use satucommit with slash commands in AI agents like:
 - `/satucommit types` - Show available commit types
 - `/satucommit scopes` - Show common commit scopes
 
-**Note:** Configure your AI agent to execute `satucommit` commands when you use these slash commands.
+**How to use in AI agents:**
+1. Configure your AI agent to execute `satucommit` commands when you use these slash commands
+2. The AI agent will run the appropriate satucommit command based on your input
+3. No additional configuration files are needed - everything is built into the CLI
 
 ### Available Commands
 
